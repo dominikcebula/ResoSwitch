@@ -82,6 +82,17 @@ shortcut=CTRL+SHIFT+2
 
 ---
 
+## 🛠 Tech Stack
+
+- C++23
+- Win32 API (native Windows programming)
+- CMake (build system)
+- cl (Visual Studio C++ compiler)
+- Windows Resource Scripts
+- GitHub Actions (CI/CD)
+
+---
+
 ## 📝 License
 
 MIT License. See [LICENSE](LICENSE) for details.
