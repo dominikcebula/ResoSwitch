@@ -1,3 +1,5 @@
+[![CI Pipeline](https://github.com/dominikcebula/ResoSwitch/actions/workflows/cmake.yml/badge.svg)](https://github.com/dominikcebula/ResoSwitch/actions/workflows/cmake.yml)
+
 # ResoSwitch
 
 **ResoSwitch** is a modern, lightweight Windows tray application that lets you instantly switch between custom screen
