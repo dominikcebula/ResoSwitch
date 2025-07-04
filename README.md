@@ -1,4 +1,4 @@
-[![CI Pipeline](https://github.com/dominikcebula/ResoSwitch/actions/workflows/cmake.yml/badge.svg)](https://github.com/dominikcebula/ResoSwitch/actions/workflows/cmake.yml)
+[![CI Pipeline](https://github.com/dominikcebula/ResoSwitch/actions/workflows/ci.yml/badge.svg)](https://github.com/dominikcebula/ResoSwitch/actions/workflows/ci.yml)
 
 # ResoSwitch
 
