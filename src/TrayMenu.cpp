@@ -1,5 +1,8 @@
 #include "TrayMenu.h"
+
+#include <cstdio>
 #include <wingdi.h>
+#include <windows.h>
 
 constexpr UINT ID_TRAY_SHOW = 1001;
 constexpr UINT ID_TRAY_ABOUT = 1002;
@@ -41,6 +44,17 @@ void SetResolution(int width, int height)
     }
 }
 
+void ShowAboutDialog(HWND hwnd)
+{
+    wchar_t version[64] = L"1.0.0.0";
+    wchar_t about[512];
+    swprintf_s(
+        about,
+        L"ResoSwitch\nVersion: %s\nhttps://github.com/dominikcebula/ResoSwitch\nDominik Cebula\ndominikcebula@gmail.com",
+        version);
+    MessageBox(hwnd, about, L"About", MB_OK | MB_ICONINFORMATION);
+}
+
 void HandleMenuCommand(const HWND hwnd, const WPARAM wParam)
 {
     switch (LOWORD(wParam))
@@ -49,9 +63,7 @@ void HandleMenuCommand(const HWND hwnd, const WPARAM wParam)
         MessageBox(hwnd, L"ResoSwitch is running!", L"Info", MB_OK | MB_ICONINFORMATION);
         break;
     case ID_TRAY_ABOUT:
-        MessageBox(
-            hwnd, L"ResoSwitch\nhttps://github.com/dominikcebula/ResoSwitch\nDominik Cebula\ndominikcebula@gmail.com",
-            L"About", MB_OK | MB_ICONINFORMATION);
+        ShowAboutDialog(hwnd);
         break;
     case ID_TRAY_720P:
         SetResolution(1280, 720);
