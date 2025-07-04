@@ -74,15 +74,22 @@ void SetAutostartMenuState(bool enabled)
     }
 }
 
-void HandleMenuCommand(const HWND hwnd, const WPARAM wParam, const std::vector<ResolutionConfig>& resolutions)
+bool HandleResolutionChange(const std::vector<ResolutionConfig>& resolutions, UINT id)
 {
-    UINT id = LOWORD(wParam);
     if (id >= ID_TRAY_RES_BASE && id < ID_TRAY_RES_BASE + resolutions.size())
     {
         const auto& res = resolutions[id - ID_TRAY_RES_BASE];
         SetResolution(res.width, res.height);
-        return;
+        return true;
     }
+    return false;
+}
+
+void HandleMenuCommand(const HWND hwnd, const WPARAM wParam, const std::vector<ResolutionConfig>& resolutions)
+{
+    UINT id = LOWORD(wParam);
+    if (HandleResolutionChange(resolutions, id))
+        return;
     switch (id)
     {
     case ID_TRAY_AUTOSTART:
