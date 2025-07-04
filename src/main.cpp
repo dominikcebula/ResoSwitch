@@ -10,6 +10,11 @@ int WINAPI wWinMain(const HINSTANCE hInstance, HINSTANCE, PWSTR, int)
     const HWND hwnd = CreateTrayAppWindow(hInstance, CLASS_NAME);
     if (!hwnd) return -1;
 
+    // Register global hotkeys
+    RegisterHotKey(hwnd, 1, MOD_CONTROL | MOD_SHIFT, '1'); // 720p
+    RegisterHotKey(hwnd, 2, MOD_CONTROL | MOD_SHIFT, '2'); // 1080p
+    RegisterHotKey(hwnd, 3, MOD_CONTROL | MOD_SHIFT, '3'); // 4k
+
     InitTrayIcon(hwnd);
     CreateTrayMenu();
 
@@ -21,5 +26,9 @@ int WINAPI wWinMain(const HINSTANCE hInstance, HINSTANCE, PWSTR, int)
     }
 
     DestroyTrayMenu();
+    // Unregister hotkeys
+    UnregisterHotKey(hwnd, 1);
+    UnregisterHotKey(hwnd, 2);
+    UnregisterHotKey(hwnd, 3);
     return 0;
 }

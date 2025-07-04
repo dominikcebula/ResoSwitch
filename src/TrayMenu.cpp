@@ -4,9 +4,6 @@
 constexpr UINT ID_TRAY_SHOW = 1001;
 constexpr UINT ID_TRAY_ABOUT = 1002;
 constexpr UINT ID_TRAY_EXIT = 1003;
-constexpr UINT ID_TRAY_720P = 1004;
-constexpr UINT ID_TRAY_1080P = 1005;
-constexpr UINT ID_TRAY_4K = 1006;
 
 static HMENU hTrayMenu = nullptr;
 
@@ -40,7 +37,7 @@ void SetResolution(int width, int height)
     LONG result = ChangeDisplaySettings(&dm, CDS_UPDATEREGISTRY);
     if (result != DISP_CHANGE_SUCCESSFUL)
     {
-        MessageBox(nullptr, L"Failed to change resolution!", L"Error", MB_OK | MB_ICONERROR);
+        MessageBox(nullptr, L"Failed to change resolution!", L"ResoSwitch - Error", MB_OK | MB_ICONERROR);
     }
 }
 

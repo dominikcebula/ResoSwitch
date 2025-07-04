@@ -13,6 +13,19 @@ LRESULT CALLBACK WndProc(const HWND hwnd, const UINT msg, const WPARAM wParam, c
     case WM_COMMAND:
         HandleMenuCommand(hwnd, wParam);
         return 0;
+    case WM_HOTKEY:
+        switch (wParam) {
+        case 1: // CTRL+SHIFT+1 -> 720p
+            HandleMenuCommand(hwnd, ID_TRAY_720P);
+            break;
+        case 2: // CTRL+SHIFT+2 -> 1080p
+            HandleMenuCommand(hwnd, ID_TRAY_1080P);
+            break;
+        case 3: // CTRL+SHIFT+3 -> 4k
+            HandleMenuCommand(hwnd, ID_TRAY_4K);
+            break;
+        }
+        return 0;
     case WM_DESTROY:
         CleanupTrayIcon();
         PostQuitMessage(0);
