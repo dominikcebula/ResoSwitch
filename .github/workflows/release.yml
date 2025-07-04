@@ -36,7 +36,7 @@ jobs:
       - name: Copy EXE to artifact dir
         run: |
           mkdir -p artifact
-          cp build/src/TrayApp.exe artifact/ResoSwitch.exe
+          cp build/src/Release/TrayApp.exe artifact/ResoSwitch.exe
 
       - name: Get version from tag
         id: get_version
