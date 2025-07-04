@@ -1,5 +1,4 @@
 #include "TrayMenu.h"
-#include <cstdio>
 #include <wingdi.h>
 #include <windows.h>
 #include <strsafe.h>
@@ -16,7 +15,7 @@ void CreateTrayMenu(const std::vector<ResolutionConfig>& resolutions)
     hTrayMenu = CreatePopupMenu();
     for (size_t i = 0; i < resolutions.size(); ++i)
     {
-        AppendMenuW(hTrayMenu, MF_STRING, ID_TRAY_RES_BASE + (UINT)i, resolutions[i].label.c_str());
+        AppendMenuW(hTrayMenu, MF_STRING, ID_TRAY_RES_BASE + static_cast<UINT>(i), resolutions[i].label.c_str());
     }
     AppendMenu(hTrayMenu, MF_SEPARATOR, 0, nullptr);
     AppendMenu(hTrayMenu, MF_STRING, ID_TRAY_ABOUT, L"About");
@@ -60,7 +59,7 @@ void LoadAppVersion(wchar_t (&version)[64])
         {
             VS_FIXEDFILEINFO* fileInfo = nullptr;
             UINT len = 0;
-            if (VerQueryValueW(data.data(), L"\\", (LPVOID*)&fileInfo, &len) && fileInfo)
+            if (VerQueryValueW(data.data(), L"\\", reinterpret_cast<LPVOID*>(&fileInfo), &len) && fileInfo)
             {
                 swprintf_s(version, 64, L"%d.%d.%d.%d",
                            HIWORD(fileInfo->dwFileVersionMS), LOWORD(fileInfo->dwFileVersionMS),
