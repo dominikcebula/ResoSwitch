@@ -1,4 +1,5 @@
 #include "TrayMenu.h"
+#include <wingdi.h>
 
 constexpr UINT ID_TRAY_SHOW = 1001;
 constexpr UINT ID_TRAY_ABOUT = 1002;
@@ -29,6 +30,20 @@ void ShowTrayMenu(const HWND hwnd)
     TrackPopupMenu(hTrayMenu, TPM_RIGHTBUTTON, pt.x, pt.y, 0, hwnd, nullptr);
 }
 
+void SetResolution(int width, int height)
+{
+    DEVMODE dm = {0};
+    dm.dmSize = sizeof(dm);
+    dm.dmFields = DM_PELSWIDTH | DM_PELSHEIGHT;
+    dm.dmPelsWidth = width;
+    dm.dmPelsHeight = height;
+    LONG result = ChangeDisplaySettings(&dm, CDS_UPDATEREGISTRY);
+    if (result != DISP_CHANGE_SUCCESSFUL)
+    {
+        MessageBox(nullptr, L"Failed to change resolution!", L"Error", MB_OK | MB_ICONERROR);
+    }
+}
+
 void HandleMenuCommand(const HWND hwnd, const WPARAM wParam)
 {
     switch (LOWORD(wParam))
@@ -42,13 +57,13 @@ void HandleMenuCommand(const HWND hwnd, const WPARAM wParam)
             L"About", MB_OK | MB_ICONINFORMATION);
         break;
     case ID_TRAY_720P:
-        MessageBox(hwnd, L"Switching to 720p (placeholder)", L"Resolution", MB_OK | MB_ICONINFORMATION);
+        SetResolution(1280, 720);
         break;
     case ID_TRAY_1080P:
-        MessageBox(hwnd, L"Switching to 1080p (placeholder)", L"Resolution", MB_OK | MB_ICONINFORMATION);
+        SetResolution(1920, 1080);
         break;
     case ID_TRAY_4K:
-        MessageBox(hwnd, L"Switching to 4k (placeholder)", L"Resolution", MB_OK | MB_ICONINFORMATION);
+        SetResolution(3840, 2160);
         break;
     case ID_TRAY_EXIT:
         PostQuitMessage(0);
