@@ -3,12 +3,16 @@
 #include <windows.h>
 #include <strsafe.h>
 
+#include "Autostart.h"
+
 constexpr UINT ID_TRAY_SHOW = 1001;
 constexpr UINT ID_TRAY_ABOUT = 1002;
 constexpr UINT ID_TRAY_EXIT = 1003;
+constexpr UINT ID_TRAY_AUTOSTART = 1004;
 constexpr UINT ID_TRAY_RES_BASE = 2000;
 
 static HMENU hTrayMenu = nullptr;
+static bool g_isAutostartEnabled = false;
 
 void CreateTrayMenu(const std::vector<ResolutionConfig>& resolutions)
 {
@@ -18,6 +22,8 @@ void CreateTrayMenu(const std::vector<ResolutionConfig>& resolutions)
         AppendMenuW(hTrayMenu, MF_STRING, ID_TRAY_RES_BASE + static_cast<UINT>(i), resolutions[i].label.c_str());
     }
     AppendMenu(hTrayMenu, MF_SEPARATOR, 0, nullptr);
+    AppendMenu(hTrayMenu, MF_STRING | (g_isAutostartEnabled ? MF_CHECKED : MF_UNCHECKED), ID_TRAY_AUTOSTART,
+               L"Autostart");
     AppendMenu(hTrayMenu, MF_STRING, ID_TRAY_ABOUT, L"About");
     AppendMenu(hTrayMenu, MF_SEPARATOR, 0, nullptr);
     AppendMenu(hTrayMenu, MF_STRING, ID_TRAY_EXIT, L"Exit");
@@ -81,6 +87,15 @@ void ShowAboutDialog(HWND hwnd)
     MessageBox(hwnd, about, L"About", MB_OK | MB_ICONINFORMATION);
 }
 
+void SetAutostartMenuState(bool enabled)
+{
+    g_isAutostartEnabled = enabled;
+    if (hTrayMenu)
+    {
+        CheckMenuItem(hTrayMenu, ID_TRAY_AUTOSTART, MF_BYCOMMAND | (enabled ? MF_CHECKED : MF_UNCHECKED));
+    }
+}
+
 void HandleMenuCommand(const HWND hwnd, const WPARAM wParam, const std::vector<ResolutionConfig>& resolutions)
 {
     UINT id = LOWORD(wParam);
@@ -92,6 +107,11 @@ void HandleMenuCommand(const HWND hwnd, const WPARAM wParam, const std::vector<R
     }
     switch (id)
     {
+    case ID_TRAY_AUTOSTART:
+        g_isAutostartEnabled = !g_isAutostartEnabled;
+        SetAutostart(g_isAutostartEnabled);
+        SetAutostartMenuState(g_isAutostartEnabled);
+        break;
     case ID_TRAY_SHOW:
         MessageBox(hwnd, L"ResoSwitch is running!", L"Info", MB_OK | MB_ICONINFORMATION);
         break;

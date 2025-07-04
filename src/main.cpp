@@ -2,6 +2,7 @@
 #include "TrayIcon.h"
 #include "TrayMenu.h"
 #include "Config.h"
+#include "Autostart.h"
 #include <windows.h>
 #include <map>
 #include <vector>
@@ -34,11 +35,12 @@ int WINAPI wWinMain(const HINSTANCE hInstance, HINSTANCE, PWSTR, int)
     std::vector<ResolutionConfig> resolutions;
     LoadResolutionsFromIni(resolutions);
 
+    SetAutostartMenuState(IsAutostartEnabled());
+
     const HWND hwnd = CreateTrayAppWindow(hInstance, CLASS_NAME, &resolutions);
     if (!hwnd) return -1;
 
     RegisterResolutionHotkeys(hwnd, resolutions);
-
     InitTrayIcon(hwnd);
     CreateTrayMenu(resolutions);
 

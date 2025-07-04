@@ -61,7 +61,7 @@ bool ParseShortcut(const std::wstring& shortcut, HotkeyInfo& out)
     if (s.find(L"SHIFT") != std::wstring::npos) out.modifiers |= MOD_SHIFT;
     if (s.find(L"ALT") != std::wstring::npos) out.modifiers |= MOD_ALT;
     if (s.find(L"WIN") != std::wstring::npos) out.modifiers |= MOD_WIN;
-    // Find the last '+' and get the key after it
+
     size_t pos = s.rfind(L'+');
     std::wstring key = (pos != std::wstring::npos) ? s.substr(pos + 1) : s;
     if (key.length() == 1 && key[0] >= L'0' && key[0] <= L'9')
@@ -74,6 +74,6 @@ bool ParseShortcut(const std::wstring& shortcut, HotkeyInfo& out)
         out.vk = 'A' + (key[0] - L'A');
         return true;
     }
-    // Add more keys as needed
+
     return false;
 }

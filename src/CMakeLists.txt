@@ -13,6 +13,8 @@ add_executable(TrayApp
         TrayAppWindow.cpp
         TrayIcon.cpp
         TrayMenu.cpp
+        Autostart.cpp
+        Autostart.h
         resource.rc
 )
 
