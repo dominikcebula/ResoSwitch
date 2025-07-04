@@ -72,7 +72,7 @@ shortcut=CTRL+SHIFT+2
 
 MIT License. See [LICENSE](LICENSE) for details.
 
-## Author
+## 👨‍💻 Author
 
 Dominik Cebula
 
