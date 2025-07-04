@@ -1,7 +1,7 @@
 // Microsoft Visual C++ generated resource script.
 #include <windows.h>
 
-IDI_RESOSWITCH ICON "resoswitch.ico"
+IDI_ICON ICON "icon.ico"
 
 VS_VERSION_INFO VERSIONINFO
  FILEVERSION 1,0,0,0

@@ -10,7 +10,7 @@ void InitTrayIcon(const HWND hwnd)
     nid.uID = 1;
     nid.uFlags = NIF_MESSAGE | NIF_ICON | NIF_TIP;
     nid.uCallbackMessage = WM_TRAYICON;
-    nid.hIcon = LoadIcon(nullptr, IDI_APPLICATION);
+    nid.hIcon = LoadIcon(GetModuleHandle(nullptr), L"IDI_ICON");
     wcscpy_s(nid.szTip, L"ResoSwitch");
     Shell_NotifyIcon(NIM_ADD, &nid);
 }

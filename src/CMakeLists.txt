@@ -21,4 +21,4 @@ target_compile_definitions(TrayApp
         "UNICODE"
 )
 
-target_link_libraries(TrayApp PRIVATE shell32 shlwapi)
+target_link_libraries(TrayApp PRIVATE shell32 shlwapi version)

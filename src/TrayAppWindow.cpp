@@ -43,6 +43,7 @@ HWND CreateTrayAppWindow(HINSTANCE hInstance, const wchar_t* className, std::vec
     wc.lpfnWndProc = WndProc;
     wc.hInstance = hInstance;
     wc.lpszClassName = className;
+    wc.hIcon = LoadIcon(hInstance, L"IDI_ICON");
     RegisterClass(&wc);
 
     return CreateWindowEx(0, className, L"ResoSwitch", 0,

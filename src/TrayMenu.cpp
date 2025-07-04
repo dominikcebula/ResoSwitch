@@ -2,11 +2,12 @@
 #include <cstdio>
 #include <wingdi.h>
 #include <windows.h>
+#include <strsafe.h>
 
 constexpr UINT ID_TRAY_SHOW = 1001;
 constexpr UINT ID_TRAY_ABOUT = 1002;
 constexpr UINT ID_TRAY_EXIT = 1003;
-constexpr UINT ID_TRAY_RES_BASE = 2000; // Dynamic resolution menu IDs start here
+constexpr UINT ID_TRAY_RES_BASE = 2000;
 
 static HMENU hTrayMenu = nullptr;
 
@@ -45,9 +46,34 @@ void SetResolution(int width, int height)
     }
 }
 
+void LoadAppVersion(wchar_t (&version)[64])
+{
+    swprintf_s(version, 64, L"Unknown");
+    wchar_t exePath[MAX_PATH] = {0};
+    GetModuleFileNameW(nullptr, exePath, MAX_PATH);
+    DWORD handle = 0;
+    DWORD size = GetFileVersionInfoSizeW(exePath, &handle);
+    if (size > 0)
+    {
+        std::vector<BYTE> data(size);
+        if (GetFileVersionInfoW(exePath, handle, size, data.data()))
+        {
+            VS_FIXEDFILEINFO* fileInfo = nullptr;
+            UINT len = 0;
+            if (VerQueryValueW(data.data(), L"\\", (LPVOID*)&fileInfo, &len) && fileInfo)
+            {
+                swprintf_s(version, 64, L"%d.%d.%d.%d",
+                           HIWORD(fileInfo->dwFileVersionMS), LOWORD(fileInfo->dwFileVersionMS),
+                           HIWORD(fileInfo->dwFileVersionLS), LOWORD(fileInfo->dwFileVersionLS));
+            }
+        }
+    }
+}
+
 void ShowAboutDialog(HWND hwnd)
 {
-    wchar_t version[64] = L"1.0.0.0";
+    wchar_t version[64];
+    LoadAppVersion(version);
     wchar_t about[512];
     swprintf_s(
         about,
