@@ -1,5 +1,4 @@
 #include "TrayMenu.h"
-
 #include <cstdio>
 #include <wingdi.h>
 #include <windows.h>
@@ -7,15 +6,17 @@
 constexpr UINT ID_TRAY_SHOW = 1001;
 constexpr UINT ID_TRAY_ABOUT = 1002;
 constexpr UINT ID_TRAY_EXIT = 1003;
+constexpr UINT ID_TRAY_RES_BASE = 2000; // Dynamic resolution menu IDs start here
 
 static HMENU hTrayMenu = nullptr;
 
-void CreateTrayMenu()
+void CreateTrayMenu(const std::vector<ResolutionConfig>& resolutions)
 {
     hTrayMenu = CreatePopupMenu();
-    AppendMenu(hTrayMenu, MF_STRING, ID_TRAY_4K, L"4k");
-    AppendMenu(hTrayMenu, MF_STRING, ID_TRAY_1080P, L"1080p");
-    AppendMenu(hTrayMenu, MF_STRING, ID_TRAY_720P, L"720p");
+    for (size_t i = 0; i < resolutions.size(); ++i)
+    {
+        AppendMenuW(hTrayMenu, MF_STRING, ID_TRAY_RES_BASE + (UINT)i, resolutions[i].label.c_str());
+    }
     AppendMenu(hTrayMenu, MF_SEPARATOR, 0, nullptr);
     AppendMenu(hTrayMenu, MF_STRING, ID_TRAY_ABOUT, L"About");
     AppendMenu(hTrayMenu, MF_SEPARATOR, 0, nullptr);
@@ -55,24 +56,22 @@ void ShowAboutDialog(HWND hwnd)
     MessageBox(hwnd, about, L"About", MB_OK | MB_ICONINFORMATION);
 }
 
-void HandleMenuCommand(const HWND hwnd, const WPARAM wParam)
+void HandleMenuCommand(const HWND hwnd, const WPARAM wParam, const std::vector<ResolutionConfig>& resolutions)
 {
-    switch (LOWORD(wParam))
+    UINT id = LOWORD(wParam);
+    if (id >= ID_TRAY_RES_BASE && id < ID_TRAY_RES_BASE + resolutions.size())
+    {
+        const auto& res = resolutions[id - ID_TRAY_RES_BASE];
+        SetResolution(res.width, res.height);
+        return;
+    }
+    switch (id)
     {
     case ID_TRAY_SHOW:
         MessageBox(hwnd, L"ResoSwitch is running!", L"Info", MB_OK | MB_ICONINFORMATION);
         break;
     case ID_TRAY_ABOUT:
         ShowAboutDialog(hwnd);
-        break;
-    case ID_TRAY_720P:
-        SetResolution(1280, 720);
-        break;
-    case ID_TRAY_1080P:
-        SetResolution(1920, 1080);
-        break;
-    case ID_TRAY_4K:
-        SetResolution(3840, 2160);
         break;
     case ID_TRAY_EXIT:
         PostQuitMessage(0);

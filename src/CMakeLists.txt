@@ -9,6 +9,7 @@ set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 add_executable(TrayApp
         WIN32
         main.cpp
+        Config.cpp
         TrayAppWindow.cpp
         TrayIcon.cpp
         TrayMenu.cpp
@@ -20,4 +21,4 @@ target_compile_definitions(TrayApp
         "UNICODE"
 )
 
-target_link_libraries(TrayApp PRIVATE shell32)
+target_link_libraries(TrayApp PRIVATE shell32 shlwapi)

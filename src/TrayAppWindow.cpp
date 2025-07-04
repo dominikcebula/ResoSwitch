@@ -1,6 +1,15 @@
 #include "TrayAppWindow.h"
 #include "TrayIcon.h"
 #include "TrayMenu.h"
+#include "Config.h"
+#include <vector>
+
+static std::vector<ResolutionConfig>* g_resolutions = nullptr;
+
+void SetResolutionsPtr(std::vector<ResolutionConfig>* resolutions)
+{
+    g_resolutions = resolutions;
+}
 
 LRESULT CALLBACK WndProc(const HWND hwnd, const UINT msg, const WPARAM wParam, const LPARAM lParam)
 {
@@ -11,20 +20,12 @@ LRESULT CALLBACK WndProc(const HWND hwnd, const UINT msg, const WPARAM wParam, c
             ShowTrayMenu(hwnd);
         return 0;
     case WM_COMMAND:
-        HandleMenuCommand(hwnd, wParam);
+        if (g_resolutions)
+            HandleMenuCommand(hwnd, wParam, *g_resolutions);
         return 0;
     case WM_HOTKEY:
-        switch (wParam) {
-        case 1: // CTRL+SHIFT+1 -> 720p
-            HandleMenuCommand(hwnd, ID_TRAY_720P);
-            break;
-        case 2: // CTRL+SHIFT+2 -> 1080p
-            HandleMenuCommand(hwnd, ID_TRAY_1080P);
-            break;
-        case 3: // CTRL+SHIFT+3 -> 4k
-            HandleMenuCommand(hwnd, ID_TRAY_4K);
-            break;
-        }
+        if (g_resolutions && wParam >= 1 && wParam <= g_resolutions->size())
+            HandleMenuCommand(hwnd, 2000 + (wParam - 1), *g_resolutions);
         return 0;
     case WM_DESTROY:
         CleanupTrayIcon();
@@ -35,8 +36,9 @@ LRESULT CALLBACK WndProc(const HWND hwnd, const UINT msg, const WPARAM wParam, c
     }
 }
 
-HWND CreateTrayAppWindow(HINSTANCE hInstance, const wchar_t* className)
+HWND CreateTrayAppWindow(HINSTANCE hInstance, const wchar_t* className, std::vector<ResolutionConfig>* resolutions)
 {
+    SetResolutionsPtr(resolutions);
     WNDCLASS wc{};
     wc.lpfnWndProc = WndProc;
     wc.hInstance = hInstance;
