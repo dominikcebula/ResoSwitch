@@ -8,11 +8,11 @@ frequently changes display settings.
 
 ## ✨ Features
 
-- 🖥️ Runs quietly in the system tray
 - ⚡ Instantly switch resolutions with a global hotkey or tray menu
 - 🛠️ Fully customizable resolution presets and shortcuts via an INI file
 - 🧵 Minimal resource usage
 - 🪟 Native Windows support (no dependencies)
+- 🖥️ Runs quietly in the system tray
 - 🗂️ Auto-generates config file on first run
 
 ---
