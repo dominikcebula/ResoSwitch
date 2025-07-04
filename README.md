@@ -16,6 +16,7 @@ frequently changes display settings.
 - 🪟 Native Windows support (no dependencies)
 - 🖥️ Runs quietly in the system tray
 - 🗂️ Auto-generates config file on first run
+- 🔄 **Autostart**: Enable or disable app autostart directly from the tray menu (checkbox)
 
 ---
 
@@ -61,6 +62,8 @@ cd ResoSwitch
 
 - The app uses an INI file named after the executable (e.g., `ResoSwitch.ini`).
 - Each resolution is a section with `label`, `width`, `height`, and `shortcut` attributes.
+- **Autostart** can be toggled from the tray menu. When enabled, the app will start automatically with Windows; when
+  disabled, it will not.
 - Example:
 
 ```
