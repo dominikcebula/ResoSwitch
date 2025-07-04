@@ -17,6 +17,15 @@ frequently changes display settings.
 
 ---
 
+## 💡 Motivation
+
+I often found myself needing to switch my screen resolution from 4k to 1080p during remote meetings. While 4k is perfect
+for my own work, it makes shared screens hard to read for others. Manually changing the resolution each time was tedious
+and disruptive. ResoSwitch was created to make this process instant and effortless, so I can quickly adapt my display
+for better readability and collaboration—without breaking my workflow.
+
+---
+
 ## 🔧 Use Cases
 
 - Quickly switch to a lower resolution for screen sharing, gaming, or recording, then revert to native
