@@ -6,8 +6,8 @@
 struct ResolutionConfig
 {
     std::wstring label;
-    int width;
-    int height;
+    int width{};
+    int height{};
     std::wstring shortcut;
 };
 

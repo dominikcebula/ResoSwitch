@@ -5,7 +5,7 @@
 void LoadAppVersion(wchar_t (&version)[64])
 {
     swprintf_s(version, 64, L"Unknown");
-    wchar_t exePath[MAX_PATH] = {0};
+    wchar_t exePath[MAX_PATH] = {};
     GetModuleFileNameW(nullptr, exePath, MAX_PATH);
     DWORD handle = 0;
     DWORD size = GetFileVersionInfoSizeW(exePath, &handle);

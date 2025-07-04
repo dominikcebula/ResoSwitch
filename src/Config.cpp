@@ -30,7 +30,7 @@ void GenerateDefaultIniIfMissing()
 bool LoadResolutionsFromIni(std::vector<ResolutionConfig>& resolutions)
 {
     std::wstring iniPath = GetConfigFilePath();
-    wchar_t sectionNames[4096] = {0};
+    wchar_t sectionNames[4096] = {};
     GetPrivateProfileSectionNamesW(sectionNames, 4096, iniPath.c_str());
     for (wchar_t* section = sectionNames; *section; section += wcslen(section) + 1)
     {
@@ -63,7 +63,7 @@ bool ParseShortcut(const std::wstring& shortcut, HotkeyInfo& out)
     if (s.find(L"WIN") != std::wstring::npos) out.modifiers |= MOD_WIN;
 
     size_t pos = s.rfind(L'+');
-    std::wstring key = (pos != std::wstring::npos) ? s.substr(pos + 1) : s;
+    std::wstring key = pos != std::wstring::npos ? s.substr(pos + 1) : s;
     if (key.length() == 1 && key[0] >= L'0' && key[0] <= L'9')
     {
         out.vk = '0' + (key[0] - L'0');

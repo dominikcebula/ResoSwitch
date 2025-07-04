@@ -11,7 +11,7 @@ void RegisterResolutionHotkeys(HWND hwnd, const std::vector<ResolutionConfig>& r
 {
     for (size_t i = 0; i < resolutions.size(); ++i)
     {
-        HotkeyInfo hk;
+        HotkeyInfo hk = {};
         if (ParseShortcut(resolutions[i].shortcut, hk) && hk.vk != 0)
         {
             RegisterHotKey(hwnd, static_cast<int>(i) + 1, hk.modifiers, hk.vk);

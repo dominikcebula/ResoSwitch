@@ -13,8 +13,8 @@ bool IsAutostartEnabled()
     {
         wchar_t exePath[MAX_PATH];
         DWORD size = sizeof(exePath);
-        LONG result = RegQueryValueExW(hKey, appName, nullptr, nullptr, reinterpret_cast<LPBYTE>(exePath), &size);
-        enabled = (result == ERROR_SUCCESS);
+        const LONG result = RegQueryValueExW(hKey, appName, nullptr, nullptr, reinterpret_cast<LPBYTE>(exePath), &size);
+        enabled = result == ERROR_SUCCESS;
         RegCloseKey(hKey);
     }
     return enabled;
@@ -22,7 +22,7 @@ bool IsAutostartEnabled()
 
 void SetAutostart(bool enable)
 {
-    wchar_t exePath[MAX_PATH] = {0};
+    wchar_t exePath[MAX_PATH] = {};
     GetModuleFileNameW(nullptr, exePath, MAX_PATH);
     HKEY hKey = nullptr;
     if (RegOpenKeyExW(HKEY_CURRENT_USER, runKey, 0, KEY_WRITE, &hKey) == ERROR_SUCCESS)

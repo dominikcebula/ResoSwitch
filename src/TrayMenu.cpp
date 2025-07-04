@@ -25,6 +25,7 @@ void CreateTrayMenu(const std::vector<ResolutionConfig>& resolutions)
     AppendMenu(hTrayMenu, MF_SEPARATOR, 0, nullptr);
     AppendMenu(hTrayMenu, MF_STRING | (g_isAutostartEnabled ? MF_CHECKED : MF_UNCHECKED), ID_TRAY_AUTOSTART,
                L"Autostart");
+    AppendMenu(hTrayMenu, MF_SEPARATOR, 0, nullptr);
     AppendMenu(hTrayMenu, MF_STRING, ID_TRAY_ABOUT, L"About");
     AppendMenu(hTrayMenu, MF_SEPARATOR, 0, nullptr);
     AppendMenu(hTrayMenu, MF_STRING, ID_TRAY_EXIT, L"Exit");
@@ -40,7 +41,7 @@ void ShowTrayMenu(const HWND hwnd)
 
 void SetResolution(int width, int height)
 {
-    DEVMODE dm = {0};
+    DEVMODE dm = {};
     dm.dmSize = sizeof(dm);
     dm.dmFields = DM_PELSWIDTH | DM_PELSHEIGHT;
     dm.dmPelsWidth = width;
