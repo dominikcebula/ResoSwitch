@@ -11,7 +11,6 @@ foreach (flag_var
         CMAKE_CXX_FLAGS_RELEASE CMAKE_CXX_FLAGS_DEBUG)
     string(REPLACE "/MD" "/MT" ${flag_var} "${${flag_var}}")
 endforeach ()
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB:MSVCRT /NODEFAULTLIB:MSVCPRT /NODEFAULTLIB:LIBCMTD /NODEFAULTLIB:LIBCPMTD")
 
 add_executable(TrayApp
         WIN32
