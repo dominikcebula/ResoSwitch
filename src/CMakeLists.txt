@@ -14,7 +14,7 @@ add_executable(TrayApp
         TrayIcon.cpp
         TrayMenu.cpp
         Autostart.cpp
-        Autostart.h
+        Version.cpp
         resource.rc
 )
 
