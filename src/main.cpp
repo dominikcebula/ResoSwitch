@@ -4,12 +4,32 @@
 #include "Config.h"
 #include <windows.h>
 #include <map>
+#include <vector>
+
+void RegisterResolutionHotkeys(HWND hwnd, const std::vector<ResolutionConfig>& resolutions)
+{
+    for (size_t i = 0; i < resolutions.size(); ++i)
+    {
+        HotkeyInfo hk;
+        if (ParseShortcut(resolutions[i].shortcut, hk) && hk.vk != 0)
+        {
+            RegisterHotKey(hwnd, static_cast<int>(i) + 1, hk.modifiers, hk.vk);
+        }
+    }
+}
+
+void UnregisterResolutionHotkeys(HWND hwnd, size_t count)
+{
+    for (size_t i = 0; i < count; ++i)
+    {
+        UnregisterHotKey(hwnd, static_cast<int>(i) + 1);
+    }
+}
 
 int WINAPI wWinMain(const HINSTANCE hInstance, HINSTANCE, PWSTR, int)
 {
     constexpr wchar_t CLASS_NAME[] = L"TrayAppWindowClass";
 
-    // Generate default INI if missing
     GenerateDefaultIniIfMissing();
     std::vector<ResolutionConfig> resolutions;
     LoadResolutionsFromIni(resolutions);
@@ -17,15 +37,7 @@ int WINAPI wWinMain(const HINSTANCE hInstance, HINSTANCE, PWSTR, int)
     const HWND hwnd = CreateTrayAppWindow(hInstance, CLASS_NAME, &resolutions);
     if (!hwnd) return -1;
 
-    // Register global hotkeys for each resolution
-    for (size_t i = 0; i < resolutions.size(); ++i)
-    {
-        HotkeyInfo hk;
-        if (ParseShortcut(resolutions[i].shortcut, hk) && hk.vk != 0)
-        {
-            RegisterHotKey(hwnd, (int)i + 1, hk.modifiers, hk.vk);
-        }
-    }
+    RegisterResolutionHotkeys(hwnd, resolutions);
 
     InitTrayIcon(hwnd);
     CreateTrayMenu(resolutions);
@@ -38,10 +50,6 @@ int WINAPI wWinMain(const HINSTANCE hInstance, HINSTANCE, PWSTR, int)
     }
 
     DestroyTrayMenu();
-    // Unregister hotkeys
-    for (size_t i = 0; i < resolutions.size(); ++i)
-    {
-        UnregisterHotKey(hwnd, (int)i + 1);
-    }
+    UnregisterResolutionHotkeys(hwnd, resolutions.size());
     return 0;
 }

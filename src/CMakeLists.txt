@@ -13,6 +13,7 @@ add_executable(TrayApp
         TrayAppWindow.cpp
         TrayIcon.cpp
         TrayMenu.cpp
+        resource.rc
 )
 
 target_compile_definitions(TrayApp
