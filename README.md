@@ -12,6 +12,8 @@
 resolutions using a global keyboard shortcut or tray menu. It is ideal for developers, gamers, streamers, and anyone who
 frequently changes display settings.
 
+![img.png](docs/img.png)
+
 ---
 
 ## ✨ Features
