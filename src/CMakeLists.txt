@@ -6,12 +6,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
-foreach (flag_var
-        CMAKE_C_FLAGS_RELEASE CMAKE_C_FLAGS_DEBUG
-        CMAKE_CXX_FLAGS_RELEASE CMAKE_CXX_FLAGS_DEBUG)
-    string(REPLACE "/MD" "/MT" ${flag_var} "${${flag_var}}")
-endforeach ()
-
 add_executable(TrayApp
         WIN32
         main.cpp
@@ -26,6 +20,8 @@ add_executable(TrayApp
         About.cpp
         resource.rc
 )
+
+set_property(TARGET TrayApp PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
 target_compile_definitions(TrayApp
         PRIVATE
