@@ -10,8 +10,7 @@ std::wstring LoadAppVersion()
     wchar_t exePath[MAX_PATH] = {};
     GetModuleFileNameW(nullptr, exePath, MAX_PATH);
     DWORD handle = 0;
-    DWORD size = GetFileVersionInfoSizeW(exePath, &handle);
-    if (size > 0)
+    if (DWORD size = GetFileVersionInfoSizeW(exePath, &handle); size > 0)
     {
         std::vector<BYTE> data(size);
         if (GetFileVersionInfoW(exePath, handle, size, data.data()))
