@@ -47,7 +47,7 @@ for better readability and collaboration—without breaking my workflow.
 
 ## 📦 Installation
 
-1. Download the latest release from [Releases](https://github.com/yourusername/ResoSwitch/releases)
+1. Download the latest release from [Releases](https://github.com/dominikcebula/ResoSwitch/releases)
 2. Place `ResoSwitch.exe` anywhere you like
 3. Run the app (it will create `ResoSwitch.ini` if not present)
 4. Edit `ResoSwitch.ini` to add or change resolution presets and shortcuts
@@ -56,6 +56,8 @@ for better readability and collaboration—without breaking my workflow.
 ---
 
 ## 🛠️ Building from Source
+
+Source code is available on GitHub under https://github.com/dominikcebula/ResoSwitch
 
 ```bash
 git clone https://github.com/yourusername/ResoSwitch.git
