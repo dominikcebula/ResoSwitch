@@ -28,7 +28,7 @@ static std::wstring getUpperCasedShortcut(const std::wstring& shortcut)
     return upperCasedShortcut;
 }
 
-static void ParseModifiers(std::wstring& shortcut, HotkeyInfo& out)
+static void ParseModifiers(const std::wstring& shortcut, HotkeyInfo& out)
 {
     if (shortcut.contains(L"CTRL"))
         out.modifiers |= MOD_CONTROL;
@@ -40,7 +40,7 @@ static void ParseModifiers(std::wstring& shortcut, HotkeyInfo& out)
         out.modifiers |= MOD_WIN;
 }
 
-static bool ParseLetterAndNumbers(HotkeyInfo& out, std::wstring shortcut)
+static bool ParseLetterAndNumbers(HotkeyInfo& out, const std::wstring& shortcut)
 {
     size_t pos = shortcut.rfind(L'+');
     std::wstring key = pos != std::wstring::npos ? shortcut.substr(pos + 1) : shortcut;
