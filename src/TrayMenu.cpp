@@ -4,7 +4,8 @@
 #include <strsafe.h>
 
 #include "Autostart.h"
-#include "Version.h"
+#include "About.h"
+#include "Resolution.h"
 
 constexpr UINT ID_TRAY_SHOW = 1001;
 constexpr UINT ID_TRAY_ABOUT = 1002;
@@ -37,32 +38,6 @@ void ShowTrayMenu(const HWND hwnd)
     GetCursorPos(&pt);
     SetForegroundWindow(hwnd);
     TrackPopupMenu(hTrayMenu, TPM_RIGHTBUTTON, pt.x, pt.y, 0, hwnd, nullptr);
-}
-
-void SetResolution(int width, int height)
-{
-    DEVMODE dm = {};
-    dm.dmSize = sizeof(dm);
-    dm.dmFields = DM_PELSWIDTH | DM_PELSHEIGHT;
-    dm.dmPelsWidth = width;
-    dm.dmPelsHeight = height;
-    LONG result = ChangeDisplaySettings(&dm, CDS_UPDATEREGISTRY);
-    if (result != DISP_CHANGE_SUCCESSFUL)
-    {
-        MessageBox(nullptr, L"Failed to change resolution!", L"ResoSwitch - Error", MB_OK | MB_ICONERROR);
-    }
-}
-
-void ShowAboutDialog(HWND hwnd)
-{
-    wchar_t version[64];
-    LoadAppVersion(version);
-    wchar_t about[512];
-    swprintf_s(
-        about,
-        L"ResoSwitch\nVersion: %s\nhttps://github.com/dominikcebula/ResoSwitch\nDominik Cebula\ndominikcebula@gmail.com",
-        version);
-    MessageBox(hwnd, about, L"About", MB_OK | MB_ICONINFORMATION);
 }
 
 void SetAutostartMenuState(bool enabled)
