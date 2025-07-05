@@ -21,6 +21,7 @@ add_executable(TrayApp
         TrayMenu.cpp
         Autostart.cpp
         Version.cpp
+        Hotkeys.cpp
         resource.rc
 )
 
