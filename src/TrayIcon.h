@@ -1,5 +1,5 @@
 #pragma once
-#include <windows.h>
+#include <Windows.h>
 
 constexpr UINT WM_TRAYICON = WM_USER + 1;
 

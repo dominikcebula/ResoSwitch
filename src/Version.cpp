@@ -1,6 +1,6 @@
 #include <cstdio>
 #include <vector>
-#include <windows.h>
+#include <Windows.h>
 
 void LoadAppVersion(wchar_t (&version)[64])
 {

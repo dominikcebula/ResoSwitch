@@ -1,6 +1,6 @@
 #include "TrayMenu.h"
 #include <wingdi.h>
-#include <windows.h>
+#include <Windows.h>
 #include <strsafe.h>
 
 #include "Autostart.h"

@@ -1,5 +1,5 @@
 #include "Autostart.h"
-#include <windows.h>
+#include <Windows.h>
 
 static const wchar_t* runKey = L"Software\\Microsoft\\Windows\\CurrentVersion\\Run";
 static const wchar_t* appName = L"ResoSwitch";

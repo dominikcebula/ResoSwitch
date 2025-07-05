@@ -1,6 +1,6 @@
 #include "Config.h"
-#include <windows.h>
-#include <shlwapi.h>
+#include <Windows.h>
+#include <Shlwapi.h>
 #include <fstream>
 #include <sstream>
 
@@ -32,7 +32,7 @@ bool LoadResolutionsFromIni(std::vector<ResolutionConfig>& resolutions)
     std::wstring iniPath = GetConfigFilePath();
     wchar_t sectionNames[4096] = {};
     GetPrivateProfileSectionNamesW(sectionNames, 4096, iniPath.c_str());
-    for (wchar_t* section = sectionNames; *section; section += wcsnlen_s(section, 4096) + 1)
+    for (const wchar_t* section = sectionNames; *section; section += wcsnlen_s(section, 4096) + 1)
     {
         ResolutionConfig config;
         config.label.resize(128);

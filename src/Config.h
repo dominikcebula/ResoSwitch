@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-#include <windows.h>
+#include <Windows.h>
 
 struct ResolutionConfig
 {

@@ -4,7 +4,7 @@
 #include "Config.h"
 #include "Autostart.h"
 #include "Hotkeys.h"
-#include <windows.h>
+#include <Windows.h>
 #include <map>
 #include <vector>
 
