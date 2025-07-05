@@ -28,15 +28,15 @@ static std::wstring getUpperCasedShortcut(const std::wstring& shortcut)
     return upperCasedShortcut;
 }
 
-static void ParseModifiers(std::wstring shortcut, HotkeyInfo& out)
+static void ParseModifiers(std::wstring& shortcut, HotkeyInfo& out)
 {
-    if (shortcut.find(L"CTRL") != std::wstring::npos)
+    if (shortcut.contains(L"CTRL"))
         out.modifiers |= MOD_CONTROL;
-    if (shortcut.find(L"SHIFT") != std::wstring::npos)
+    if (shortcut.contains(L"SHIFT"))
         out.modifiers |= MOD_SHIFT;
-    if (shortcut.find(L"ALT") != std::wstring::npos)
+    if (shortcut.contains(L"ALT"))
         out.modifiers |= MOD_ALT;
-    if (shortcut.find(L"WIN") != std::wstring::npos)
+    if (shortcut.contains(L"WIN"))
         out.modifiers |= MOD_WIN;
 }
 

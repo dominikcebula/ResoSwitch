@@ -6,9 +6,10 @@
 
 std::wstring GetConfigFilePath()
 {
-    wchar_t exePath[MAX_PATH];
-    GetModuleFileNameW(nullptr, exePath, MAX_PATH);
-    PathRemoveExtensionW(exePath);
+    std::wstring exePath(MAX_PATH, L'\0');
+    GetModuleFileNameW(nullptr, &exePath[0], static_cast<DWORD>(exePath.size()));
+    PathRemoveExtensionW(&exePath[0]);
+    exePath.resize(wcsnlen_s(exePath.c_str(), exePath.size()));
     std::wstring iniPath = exePath;
     iniPath += L".ini";
     return iniPath;
@@ -30,9 +31,9 @@ void GenerateDefaultIniIfMissing()
 bool LoadResolutionsFromIni(std::vector<ResolutionConfig>& resolutions)
 {
     std::wstring iniPath = GetConfigFilePath();
-    wchar_t sectionNames[4096] = {};
-    GetPrivateProfileSectionNamesW(sectionNames, 4096, iniPath.c_str());
-    for (const wchar_t* section = sectionNames; *section; section += wcsnlen_s(section, 4096) + 1)
+    std::wstring sectionNames(4096, L'\0');
+    GetPrivateProfileSectionNamesW(&sectionNames[0], 4096, iniPath.c_str());
+    for (const wchar_t* section = sectionNames.c_str(); *section; section += wcsnlen_s(section, 4096) + 1)
     {
         ResolutionConfig config;
         config.label.resize(128);
