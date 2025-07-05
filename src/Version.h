@@ -1,3 +1,4 @@
 #pragma once
+#include <string>
 
-void LoadAppVersion(wchar_t (&version)[64]);
+std::wstring LoadAppVersion();

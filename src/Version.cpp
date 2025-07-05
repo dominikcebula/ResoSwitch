@@ -1,9 +1,11 @@
 #include <cstdio>
 #include <vector>
 #include <Windows.h>
+#include <string>
 
-void LoadAppVersion(wchar_t (&version)[64])
+std::wstring LoadAppVersion()
 {
+    wchar_t version[64];
     swprintf_s(version, 64, L"Unknown");
     wchar_t exePath[MAX_PATH] = {};
     GetModuleFileNameW(nullptr, exePath, MAX_PATH);
@@ -24,4 +26,5 @@ void LoadAppVersion(wchar_t (&version)[64])
             }
         }
     }
+    return std::wstring(version);
 }
