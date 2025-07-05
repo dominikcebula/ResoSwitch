@@ -30,7 +30,7 @@ void SetAutostart(bool enable)
         if (enable)
         {
             RegSetValueExW(hKey, appName, 0, REG_SZ, reinterpret_cast<const BYTE*>(exePath),
-                           static_cast<DWORD>((wcslen(exePath) + 1) * sizeof(wchar_t)));
+                           static_cast<DWORD>((wcsnlen_s(exePath, MAX_PATH) + 1) * sizeof(wchar_t)));
         }
         else
         {
