@@ -1,4 +1,10 @@
 [![CI Pipeline](https://github.com/dominikcebula/ResoSwitch/actions/workflows/ci.yml/badge.svg)](https://github.com/dominikcebula/ResoSwitch/actions/workflows/ci.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=dominikcebula_ResoSwitch&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=dominikcebula_ResoSwitch)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=dominikcebula_ResoSwitch&metric=bugs)](https://sonarcloud.io/summary/new_code?id=dominikcebula_ResoSwitch)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=dominikcebula_ResoSwitch&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=dominikcebula_ResoSwitch)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=dominikcebula_ResoSwitch&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=dominikcebula_ResoSwitch)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=dominikcebula_ResoSwitch&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=dominikcebula_ResoSwitch)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=dominikcebula_ResoSwitch&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=dominikcebula_ResoSwitch)
 
 # ResoSwitch
 
