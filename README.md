@@ -56,36 +56,6 @@ for better readability and collaboration—without breaking my workflow.
 
 ---
 
-## 🛠️ Building from Source
-
-The source code is available on GitHub
-at [https://github.com/dominikcebula/ResoSwitch](https://github.com/dominikcebula/ResoSwitch).
-
-To build the project, you need either Visual Studio 2022 (IDE) or Build Tools for Visual Studio 2022 (command-line
-tools).
-
-You can download Visual Studio from [Visual Studio Downloads](https://visualstudio.microsoft.com/downloads/).
-
-If you prefer to use only the command-line tools, download the Build Tools for Visual Studio 2022 from the same page.
-Scroll to the "All Downloads" section, select "Tools for Visual Studio," and choose the download option.
-
-CMake is included with the Visual Studio installation.
-
-To build the project from the command line, run:
-
-```bash
-cmake -B cmake-build -DCMAKE_CXX_COMPILER=cl -DCMAKE_C_COMPILER=cl -DCMAKE_BUILD_TYPE=Debug
-cmake --build cmake-build --config Debug
-```
-
-This will create a `cmake-build` directory containing the build files and the executable.
-The executable will be located at `cmake-build\src\Debug\TrayApp.exe`.
-
-To build the project using the IDE, open the `CMakeLists.txt` file in Visual Studio, select the desired build
-configuration (Debug or Release), then build and run the solution.
-
----
-
 ## ⚙️ Configuration
 
 - The app uses an INI file named after the executable (e.g., `ResoSwitch.ini`).
@@ -118,6 +88,36 @@ shortcut=CTRL+SHIFT+2
 - cl (Visual Studio C++ compiler)
 - Windows Resource Scripts
 - GitHub Actions (CI/CD)
+
+---
+
+## 🛠️ Building from Source
+
+The source code is available on GitHub
+at [https://github.com/dominikcebula/ResoSwitch](https://github.com/dominikcebula/ResoSwitch).
+
+To build the project, you need either Visual Studio 2022 (IDE) or Build Tools for Visual Studio 2022 (command-line
+tools).
+
+You can download Visual Studio from [Visual Studio Downloads](https://visualstudio.microsoft.com/downloads/).
+
+If you prefer to use only the command-line tools, download the Build Tools for Visual Studio 2022 from the same page.
+Scroll to the "All Downloads" section, select "Tools for Visual Studio," and choose the download option.
+
+CMake is included with the Visual Studio installation.
+
+To build the project from the command line, run:
+
+```bash
+cmake -B cmake-build -DCMAKE_CXX_COMPILER=cl -DCMAKE_C_COMPILER=cl -DCMAKE_BUILD_TYPE=Debug
+cmake --build cmake-build --config Debug
+```
+
+This will create a `cmake-build` directory containing the build files and the executable.
+The executable will be located at `cmake-build\src\Debug\TrayApp.exe`.
+
+To build the project using the IDE, open the `CMakeLists.txt` file in Visual Studio, select the desired build
+configuration (Debug or Release), then build and run the solution.
 
 ---
 
