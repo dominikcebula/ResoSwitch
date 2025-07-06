@@ -9,6 +9,7 @@ set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 add_executable(TrayApp
         WIN32
         main.cpp
+        resource.rc
         Config.cpp
         TrayAppWindow.cpp
         TrayIcon.cpp
@@ -18,7 +19,7 @@ add_executable(TrayApp
         Hotkeys.cpp
         Resolution.cpp
         About.cpp
-        resource.rc
+        About.rc
 )
 
 set_property(TARGET TrayApp PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")

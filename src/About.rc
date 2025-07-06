@@ -1,0 +1,17 @@
+#include "About.h"
+#include "resource.h"
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 250, 140
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About ResoSwitch"
+FONT 9, "Segoe UI", 0, 0, 0x1
+BEGIN
+    LTEXT           "ResoSwitch",IDC_STATIC,40,10,160,10,SS_NOPREFIX
+    LTEXT           "Version:",IDC_STATIC,40,25,40,10
+    LTEXT           "",IDC_ABOUT_VERSION,85,25,120,10
+    LTEXT           "Git: https://github.com/dominikcebula/ResoSwitch",IDC_STATIC,40,40,180,10
+    LTEXT           "Author: Dominik Cebula",IDC_STATIC,40,55,180,10
+    LTEXT           "E-Mail: dominikcebula@gmail.com",IDC_STATIC,40,70,180,10
+    LTEXT           "License: MIT License",IDC_STATIC,40,85,180,10
+    DEFPUSHBUTTON   "OK",IDOK,90,110,60,14
+END

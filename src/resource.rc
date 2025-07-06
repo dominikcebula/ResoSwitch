@@ -29,3 +29,9 @@ BEGIN
         VALUE "Translation", 0x409, 1200
     END
 END
+
+//
+// Manifest resources
+//
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+1                  RT_MANIFEST    ".\\manifest.xml"

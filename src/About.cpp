@@ -1,15 +1,32 @@
 #include "About.h"
 #include "Version.h"
 #include <string>
+#include <windows.h>
 
-void ShowAboutDialog(HWND hwnd)
+INT_PTR CALLBACK AboutDlgProc(const HWND hDlg, const UINT message, const WPARAM wParam, LPARAM lParam)
 {
-    std::wstring about =
-        std::wstring(L"ResoSwitch") +
-        L"\nVersion: " + LoadAppVersion() +
-        L"\nGit: https://github.com/dominikcebula/ResoSwitch" +
-        L"\nAuthor: Dominik Cebula" +
-        L"\nE-Mail: dominikcebula@gmail.com" +
-        L"\nLicense: MIT License";
-    MessageBox(hwnd, about.c_str(), L"About", MB_OK | MB_ICONINFORMATION);
+    switch (message)
+    {
+    case WM_INITDIALOG:
+        {
+            const std::wstring version = LoadAppVersion();
+            SetDlgItemText(hDlg, IDC_ABOUT_VERSION, version.c_str());
+        }
+        return TRUE;
+    case WM_COMMAND:
+        if (LOWORD(wParam) == IDOK)
+        {
+            EndDialog(hDlg, LOWORD(wParam));
+            return TRUE;
+        }
+        break;
+    default:
+        return FALSE;
+    }
+    return FALSE;
+}
+
+void ShowAboutDialog(const HWND hwnd)
+{
+    DialogBox(GetModuleHandle(nullptr), MAKEINTRESOURCE(IDD_ABOUTBOX), hwnd, AboutDlgProc);
 }
