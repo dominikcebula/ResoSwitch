@@ -9,8 +9,9 @@
 # ResoSwitch
 
 **ResoSwitch** is a lightweight Windows tray application that lets you instantly switch between custom screen
-resolutions using a global keyboard shortcut or tray menu. It is ideal for developers, gamers, streamers, and anyone who
-frequently changes display settings.
+resolutions using a global keyboard shortcut or tray menu. It is ideal for anyone who frequently changes display
+settings, such as during remote meetings, presentations or content creation. With ResoSwitch, you can quickly toggle
+between resolutions without interrupting your workflow.
 
 ![img.png](docs/img.png)
 
@@ -57,14 +58,31 @@ for better readability and collaboration—without breaking my workflow.
 
 ## 🛠️ Building from Source
 
-Source code is available on GitHub under https://github.com/dominikcebula/ResoSwitch
+Source code is available on GitHub
+under [https://github.com/dominikcebula/ResoSwitch](https://github.com/dominikcebula/ResoSwitch).
+
+To build the project, you will need Visual Studio 2022 (IDE) or Build Tools for Visual Studio 2022 (command-line tools).
+
+Visual Studio can be downloaded from [Visual Studio Downloads](https://visualstudio.microsoft.com/downloads/).
+
+If you prefer to use only the command line tools, you can download Build Tools for Visual Studio 2022 from the
+page [Visual Studio Downloads](https://visualstudio.microsoft.com/downloads/) by scrolling to the All Downloads
+sections, selecting Tools for Visual Studio and then selecting download option.
+
+CMake will be included in the Visual Studio installation.
+
+To build the project, from the command line, run:
 
 ```bash
-git clone https://github.com/yourusername/ResoSwitch.git
-cd ResoSwitch
-# Open in Visual Studio or your preferred C++ IDE
-# Or use CMake to build
+cmake -B cmake-build -DCMAKE_CXX_COMPILER=cl -DCMAKE_C_COMPILER=cl -DCMAKE_BUILD_TYPE=Debug
+cmake --build cmake-build --config Debug
 ```
+
+This will create a `cmake-build` directory containing the build files and the executable.
+Executable will be located in `cmake-build\src\Debug\TrayApp.exe`
+
+To build the project using IDE, import the `CMakeLists.txt` file into Visual Studio, select the desired build
+configuration (Debug or Release), build and execute the solution.
 
 ---
 
