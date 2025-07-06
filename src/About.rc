@@ -1,17 +1,30 @@
 #include "About.h"
 #include "resource.h"
 
-IDD_ABOUTBOX DIALOGEX 0, 0, 250, 140
+IDD_ABOUTBOX DIALOGEX 0, 0, 240, 130
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About ResoSwitch"
-FONT 9, "Segoe UI", 0, 0, 0x1
+FONT 10, "Segoe UI", 0, 0, 0x1
 BEGIN
-    LTEXT           "ResoSwitch",IDC_STATIC,40,10,160,10,SS_NOPREFIX
-    LTEXT           "Version:",IDC_STATIC,40,25,40,10
-    LTEXT           "",IDC_ABOUT_VERSION,85,25,120,10
-    LTEXT           "Git: https://github.com/dominikcebula/ResoSwitch",IDC_STATIC,40,40,180,10
-    LTEXT           "Author: Dominik Cebula",IDC_STATIC,40,55,180,10
-    LTEXT           "E-Mail: dominikcebula@gmail.com",IDC_STATIC,40,70,180,10
-    LTEXT           "License: MIT License",IDC_STATIC,40,85,180,10
+    // App name, bold
+    LTEXT           "ResoSwitch",IDC_STATIC,40,10,150,16,SS_NOPREFIX | SS_CENTERIMAGE
+    // Horizontal separator
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,10,32,220,1
+    // Version
+    LTEXT           "Version:",IDC_STATIC,40,40,45,10
+    LTEXT           "",IDC_ABOUT_VERSION,90,40,100,10
+    // Author
+    LTEXT           "Author:",IDC_STATIC,40,52,45,10
+    LTEXT           "Dominik Cebula",IDC_STATIC,90,52,100,10
+    // License
+    LTEXT           "License:",IDC_STATIC,40,64,45,10
+    LTEXT           "MIT License",IDC_STATIC,90,64,100,10
+    // GitHub
+    LTEXT           "GitHub:",IDC_STATIC,40,76,45,10
+    LTEXT           "github.com/dominikcebula/ResoSwitch",IDC_STATIC,90,76,140,10
+    // Email
+    LTEXT           "E-Mail:",IDC_STATIC,40,88,45,10
+    LTEXT           "dominikcebula@gmail.com",IDC_STATIC,90,88,140,10
+    // OK button
     DEFPUSHBUTTON   "OK",IDOK,90,110,60,14
 END
