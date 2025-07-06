@@ -3,7 +3,7 @@
 #include <string>
 #include <windows.h>
 
-INT_PTR CALLBACK AboutDlgProc(const HWND hDlg, const UINT message, const WPARAM wParam, LPARAM lParam)
+static INT_PTR CALLBACK AboutDlgProc(const HWND hDlg, const UINT message, const WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
