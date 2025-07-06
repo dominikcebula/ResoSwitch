@@ -129,6 +129,6 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 Dominik Cebula
 
-* https://dominikcebula.com/
-* https://blog.dominikcebula.com/
-* https://www.udemy.com/user/dominik-cebula/
+* [https://dominikcebula.com/](https://dominikcebula.com/)
+* [https://blog.dominikcebula.com/](https://blog.dominikcebula.com/)
+* [https://www.udemy.com/user/dominik-cebula/](https://www.udemy.com/user/dominik-cebula/)
