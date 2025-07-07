@@ -1,7 +1,27 @@
 #include "About.h"
 #include "Version.h"
 #include <string>
-#include <windows.h>
+#include <Windows.h>
+#include <CommCtrl.h>
+#include <Shellapi.h>
+
+static std::wstring getLink(const HWND hDlg, int nIDDlgItem)
+{
+    wchar_t url[256] = {0};
+    GetDlgItemText(hDlg, nIDDlgItem, url, 255);
+
+    const wchar_t* start = wcsstr(url, L"<a>");
+    const wchar_t* end = wcsstr(url, L"</a>");
+    if (start && end && end > start)
+    {
+        start += 3;
+        std::wstring link(start, end - start);
+
+        return link;
+    }
+
+    return std::wstring{};
+}
 
 static INT_PTR CALLBACK AboutDlgProc(const HWND hDlg, const UINT message, const WPARAM wParam, LPARAM lParam)
 {
@@ -18,6 +38,20 @@ static INT_PTR CALLBACK AboutDlgProc(const HWND hDlg, const UINT message, const 
         {
             EndDialog(hDlg, LOWORD(wParam));
             return TRUE;
+        }
+        break;
+    case WM_NOTIFY:
+        {
+            LPNMHDR pnmh = (LPNMHDR)lParam;
+
+            if (pnmh->code == NM_CLICK && (pnmh->idFrom == IDC_SYSLINK_HOMEPAGE || pnmh->idFrom == IDC_SYSLINK_CONTACT))
+            {
+                std::wstring link = getLink(hDlg, pnmh->idFrom);
+                if (pnmh->idFrom == IDC_SYSLINK_CONTACT)
+                    link = L"mailto:" + link;
+
+                ShellExecute(nullptr, L"open", link.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+            }
         }
         break;
     default:
