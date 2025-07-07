@@ -5,6 +5,19 @@
 #include <CommCtrl.h>
 #include <Shellapi.h>
 
+static void SetWindowPosToCenterOfTheScreen(const HWND hDlg)
+{
+    RECT rcDlg;
+    GetWindowRect(hDlg, &rcDlg);
+    int dlgWidth = rcDlg.right - rcDlg.left;
+    int dlgHeight = rcDlg.bottom - rcDlg.top;
+    int screenWidth = GetSystemMetrics(SM_CXSCREEN);
+    int screenHeight = GetSystemMetrics(SM_CYSCREEN);
+    int dlgX = (screenWidth - dlgWidth) / 2;
+    int dlgY = (screenHeight - dlgHeight) / 2;
+    SetWindowPos(hDlg, nullptr, dlgX, dlgY, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
+}
+
 static std::wstring getLink(const HWND hDlg, int nIDDlgItem)
 {
     wchar_t url[256] = {0};
@@ -29,6 +42,8 @@ static INT_PTR CALLBACK AboutDlgProc(const HWND hDlg, const UINT message, const 
     {
     case WM_INITDIALOG:
         {
+            SetWindowPosToCenterOfTheScreen(hDlg);
+
             const std::wstring version = LoadAppVersion();
             SetDlgItemText(hDlg, IDC_ABOUT_VERSION, version.c_str());
         }
