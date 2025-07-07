@@ -69,6 +69,9 @@ static INT_PTR CALLBACK AboutDlgProc(const HWND hDlg, const UINT message, const 
             }
         }
         break;
+    case WM_CLOSE:
+        EndDialog(hDlg, 0);
+        return TRUE;
     default:
         return FALSE;
     }
