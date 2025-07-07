@@ -8,7 +8,7 @@
 
 # ResoSwitch
 
-**ResoSwitch** is a lightweight Windows tray application that lets you instantly switch between custom screen
+**ResoSwitch** is a lightweight Windows tray application that lets you instantly switch between screen
 resolutions using a global keyboard shortcut or tray menu. It is ideal for anyone who frequently changes display
 settings, such as during remote meetings, presentations or content creation. With ResoSwitch, you can quickly toggle
 between resolutions without interrupting your workflow.
