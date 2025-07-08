@@ -21,7 +21,8 @@ void CreateTrayMenu(const std::vector<ResolutionConfig>& resolutions)
     hTrayMenu = CreatePopupMenu();
     for (size_t i = 0; i < resolutions.size(); ++i)
     {
-        AppendMenuW(hTrayMenu, MF_STRING, ID_TRAY_RES_BASE + static_cast<UINT>(i), resolutions[i].label.c_str());
+        std::wstring label = resolutions[i].label + L" - " + resolutions[i].shortcut;
+        AppendMenuW(hTrayMenu, MF_STRING, ID_TRAY_RES_BASE + static_cast<UINT>(i), label.c_str());
     }
     AppendMenu(hTrayMenu, MF_SEPARATOR, 0, nullptr);
     AppendMenu(hTrayMenu, MF_STRING | (g_isAutostartEnabled ? MF_CHECKED : MF_UNCHECKED), ID_TRAY_AUTOSTART,
